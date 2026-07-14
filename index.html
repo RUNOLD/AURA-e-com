@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title & SEO Meta Tags -->
+    <title>AURA — Premium Minimalist Fashion & Lifestyle Store</title>
+    <meta name="description" content="Discover AURA's curated collection of premium designer clothing, luxury accessories, and smart lifestyle essentials. Enjoy free shipping and easy returns.">
+    <meta name="keywords" content="premium fashion, luxury apparel, minimalist store, e-commerce fashion, designer shoes, lifestyle accessories">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <input type="checkbox" id="mobile-menu-toggle-chk" class="mobile-menu-toggle-chk" style="display: none;">
+
+    <!-- ==========================================================================
+       HEADER (STICKY NAVBAR)
+       ========================================================================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <!-- Left: Logo -->
+            <a href="#" class="logo" id="header-logo" aria-label="AURA Home">
+                <span class="logo-icon" aria-hidden="true">A</span>
+                <span>AURA</span>
+            </a>
+
+            <!-- Center: Desktop Navigation -->
+            <nav class="nav-desktop" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="#" class="nav-link active" id="nav-home">Home</a></li>
+                    <li><a href="./shop.html" class="nav-link" id="nav-shop">Shop</a></li>
+                    <li><a href="#categories" class="nav-link" id="nav-categories">Categories</a></li>
+                    <li><a href="#new-arrivals" class="nav-link" id="nav-new">New Arrivals</a></li>
+                    <li><a href="#deals" class="nav-link" id="nav-deals">Deals</a></li>
+                    <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+                    <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <!-- Right: Action Buttons -->
+            <div class="header-actions">
+                <!-- Search Button -->
+                <button class="action-btn" id="search-trigger" aria-label="Open Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                
+                <!-- Wishlist Button -->
+                <a href="#wishlist" class="action-btn" id="wishlist-trigger" aria-label="View Wishlist">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge" id="wishlist-badge">2</span>
+                </a>
+
+                <!-- Shopping Cart Button -->
+                <a href="cart.html" class="action-btn" id="cart-trigger" aria-label="View Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge" id="cart-badge">3</span>
+                </a>
+
+                <!-- User Profile Button -->
+                <a href="#account" class="action-btn" id="account-trigger" aria-label="Go to My Account">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                </a>
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <label for="mobile-menu-toggle-chk" class="hamburger-btn" id="mobile-menu-trigger" aria-label="Open Navigation Menu" aria-controls="mobile-nav-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </label>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       MOBILE NAVIGATION MENU (SLIDE OUT DRAWER)
+       ========================================================================== -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div class="mobile-nav-drawer">
+            <div class="mobile-nav-header">
+                <a href="#" class="logo">
+                    <span class="logo-icon">A</span>
+                    <span>AURA</span>
+                </a>
+                <label for="mobile-menu-toggle-chk" class="close-btn" id="mobile-menu-close" aria-label="Close Navigation Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </label>
+            </div>
+            
+            <nav class="mobile-nav" aria-label="Mobile Navigation List">
+                <ul class="mobile-nav-list">
+                    <li><a href="#" class="mobile-nav-link active" id="mobile-nav-home">Home</a></li>
+                    <li><a href="#shop" class="mobile-nav-link" id="mobile-nav-shop">Shop</a></li>
+                    <li><a href="#categories" class="mobile-nav-link" id="mobile-nav-categories">Categories</a></li>
+                    <li><a href="#new-arrivals" class="mobile-nav-link" id="mobile-nav-new">New Arrivals</a></li>
+                    <li><a href="#deals" class="mobile-nav-link" id="mobile-nav-deals">Deals</a></li>
+                    <li><a href="#about" class="mobile-nav-link" id="mobile-nav-about">About</a></li>
+                    <li><a href="#contact" class="mobile-nav-link" id="mobile-nav-contact">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-nav-actions">
+                <a href="#search" class="mobile-action-link" id="mobile-search-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search Products</span>
+                </a>
+                <a href="#wishlist" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span>Wishlist</span>
+                    <span class="badge">2</span>
+                </a>
+                <a href="cart.html" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Shopping Cart</span>
+                    <span class="badge">3</span>
+                </a>
+                <a href="#account" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="12" cy="7" r="4"></circle>
+                    </svg>
+                    <span>My Account</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       HERO SECTION
+       ========================================================================== -->
+    <section class="hero-section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <span class="hero-tag">AURA Autumn Collection</span>
+                <h1 class="hero-title">Discover Premium Fashion & Lifestyle</h1>
+                <p class="hero-desc">Elevate your everyday with our refined essentials, crafted for comfort, style, and long-lasting beauty. Experience luxury simplified.</p>
+                <div class="hero-btns">
+                    <a href="#shop" class="btn btn-primary" id="hero-btn-primary">Shop Now</a>
+                    <a href="#categories" class="btn btn-secondary" id="hero-btn-secondary">Explore Collection</a>
+                </div>
+            </div>
+            <div class="hero-image-wrapper">
+                <div class="hero-img-bg"></div>
+                <img src="images/hero_fashion.png" alt="AURA Autumn premium apparel model showcase" class="hero-img" loading="eager" width="600" height="560">
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FEATURES SECTION
+       ========================================================================== -->
+    <section class="features-section section-padding" id="features">
+        <div class="container">
+            <div class="features-grid">
+                <!-- Card 1: Free Delivery -->
+                <div class="feature-card" id="feature-card-delivery">
+                    <div class="feature-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="1" y="3" width="15" height="13"></rect>
+                            <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                            <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                            <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Free Delivery</h3>
+                    <p class="feature-desc">Complimentary shipping on all orders over $150. Tracked shipping worldwide.</p>
+                </div>
+                
+                <!-- Card 2: Secure Payments -->
+                <div class="feature-card" id="feature-card-payments">
+                    <div class="feature-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Secure Payments</h3>
+                    <p class="feature-desc">All transactions are highly encrypted. Safe checkout with absolute privacy.</p>
+                </div>
+                
+                <!-- Card 3: 24/7 Support -->
+                <div class="feature-card" id="feature-card-support">
+                    <div class="feature-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">24/7 Customer Support</h3>
+                    <p class="feature-desc">Our concierge design and support team is available around the clock.</p>
+                </div>
+                
+                <!-- Card 4: Easy Returns -->
+                <div class="feature-card" id="feature-card-returns">
+                    <div class="feature-icon-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="23 4 23 10 17 10"></polyline>
+                            <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Easy Returns</h3>
+                    <p class="feature-desc">Hassle-free 30-day returns policy. Returns shipping labels provided.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       CATEGORY SECTION
+       ========================================================================== -->
+    <section class="categories-section section-padding" id="categories">
+        <div class="container">
+            <div class="section-title-wrapper">
+                <span class="section-tag">Shop by</span>
+                <h2 class="section-title">Explore Our Categories</h2>
+            </div>
+            
+            <div class="categories-grid">
+                <!-- Women -->
+                <div class="category-card cat-women" id="cat-card-women">
+                    <img src="images/cat_women.png" alt="Women's collection category" class="category-img" loading="lazy">
+                    <div class="category-overlay">
+                        <div>
+                            <span class="category-count">124 Products</span>
+                            <h3 class="category-title">Women</h3>
+                        </div>
+                        <a href="#shop" class="category-btn" id="cat-btn-women">
+                            <span>View Products</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Men -->
+                <div class="category-card cat-men" id="cat-card-men">
+                    <img src="images/cat_men.png" alt="Men's collection category" class="category-img" loading="lazy">
+                    <div class="category-overlay">
+                        <div>
+                            <span class="category-count">98 Products</span>
+                            <h3 class="category-title">Men</h3>
+                        </div>
+                        <a href="#shop" class="category-btn" id="cat-btn-men">
+                            <span>View Products</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Shoes -->
+                <div class="category-card cat-shoes" id="cat-card-shoes">
+                    <img src="images/cat_shoes.png" alt="Premium Shoes category" class="category-img" loading="lazy">
+                    <div class="category-overlay">
+                        <div>
+                            <span class="category-count">64 Products</span>
+                            <h3 class="category-title">Shoes</h3>
+                        </div>
+                        <a href="#shop" class="category-btn" id="cat-btn-shoes">
+                            <span>View Products</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Accessories -->
+                <div class="category-card cat-accessories" id="cat-card-accessories">
+                    <img src="images/cat_accessories.png" alt="Luxury Accessories category" class="category-img" loading="lazy">
+                    <div class="category-overlay">
+                        <div>
+                            <span class="category-count">85 Products</span>
+                            <h3 class="category-title">Accessories</h3>
+                        </div>
+                        <a href="#shop" class="category-btn" id="cat-btn-accessories">
+                            <span>View Products</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Electronics -->
+                <div class="category-card cat-electronics" id="cat-card-electronics">
+                    <img src="images/cat_electronics.png" alt="High-End Smart Electronics category" class="category-img" loading="lazy">
+                    <div class="category-overlay">
+                        <div>
+                            <span class="category-count">42 Products</span>
+                            <h3 class="category-title">Electronics</h3>
+                        </div>
+                        <a href="#shop" class="category-btn" id="cat-btn-electronics">
+                            <span>View Products</span>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                <line x1="5" y1="12" x2="19" y2="12"></line>
+                                <polyline points="12 5 19 12 12 19"></polyline>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FEATURED PRODUCTS PREVIEW (8 PRODUCTS)
+       ========================================================================== -->
+    <section class="products-section section-padding" id="shop">
+        <div class="container">
+            <div class="section-title-wrapper" id="new-arrivals">
+                <span class="section-tag">Trending Now</span>
+                <h2 class="section-title">Featured Products</h2>
+            </div>
+            
+            <div class="products-grid">
+                <!-- Product 1: Handbag -->
+                <article class="product-card" id="prod-card-1">
+                    <div class="product-media">
+                        <div class="product-badges">
+                            <span class="product-badge badge-new">New</span>
+                        </div>
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/bag.png" alt="AURA Premium Designer Leather Handbag" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Accessories</span>
+                        <h3 class="product-name"><a href="#product-1" id="prod-link-1">Minimalist Leather Tote Bag</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.8 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(34)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$185.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 2: Watch -->
+                <article class="product-card" id="prod-card-2">
+                    <div class="product-media">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/watch.png" alt="Classic Minimalist Watch" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Accessories</span>
+                        <h3 class="product-name"><a href="#product-2" id="prod-link-2">Classic Chronograph Watch</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.9 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(42)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$220.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 3: Sneakers -->
+                <article class="product-card" id="prod-card-3">
+                    <div class="product-media">
+                        <button class="wishlist-btn active" aria-label="Add to Wishlist" id="wishlist-btn-3">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/sneakers.png" alt="Sleek Modern White Sneakers" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Shoes</span>
+                        <h3 class="product-name"><a href="#product-3" id="prod-link-3">Minimalist Leather Sneakers</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.7 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(81)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$140.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 4: Headphones -->
+                <article class="product-card" id="prod-card-4">
+                    <div class="product-media">
+                        <div class="product-badges">
+                            <span class="product-badge badge-sale">Sale</span>
+                        </div>
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/headphones.png" alt="Premium Wireless Headphones" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-4">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Electronics</span>
+                        <h3 class="product-name"><a href="#product-4" id="prod-link-4">Wireless Studio Headphones</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 5.0 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(95)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$249.00</span>
+                            <span class="price-old">$299.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 5: Sunglasses -->
+                <article class="product-card" id="prod-card-5">
+                    <div class="product-media">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-5">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/sunglasses.png" alt="Designer Sunglasses" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-5">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Accessories</span>
+                        <h3 class="product-name"><a href="#product-5" id="prod-link-5">Vintage Acetate Sunglasses</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.6 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(19)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$95.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 6: Sweater -->
+                <article class="product-card" id="prod-card-6">
+                    <div class="product-media">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/sweater.png" alt="Cozy Cashmere Sweater" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Women</span>
+                        <h3 class="product-name"><a href="#product-6" id="prod-link-6">Premium Cashmere Knit Sweater</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.7 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(28)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$165.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 7: Coat -->
+                <article class="product-card" id="prod-card-7">
+                    <div class="product-media">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-7">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/coat.png" alt="Wool Overcoat" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-7">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-7">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Men</span>
+                        <h3 class="product-name"><a href="#product-7" id="prod-link-7">Minimalist Winter Wool Coat</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.8 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(53)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$320.00</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Product 8: Smartwatch -->
+                <article class="product-card" id="prod-card-8">
+                    <div class="product-media">
+                        <button class="wishlist-btn" aria-label="Add to Wishlist" id="wishlist-btn-8">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                            </svg>
+                        </button>
+                        <img src="images/products/smartwatch.png" alt="Smartwatch Electronics" class="product-img" loading="lazy">
+                        <div class="product-actions-overlay">
+                            <button class="overlay-add-cart-btn" id="add-to-cart-8">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
+                                    <circle cx="9" cy="21" r="1"></circle>
+                                    <circle cx="20" cy="21" r="1"></circle>
+                                    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                                </svg>
+                                <span>Add to Cart</span>
+                            </button>
+                            <button class="overlay-quickview-btn" aria-label="Quick View" id="quickview-btn-8">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                    <circle cx="12" cy="12" r="3"></circle>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="product-details">
+                        <span class="product-cat">Electronics</span>
+                        <h3 class="product-name"><a href="#product-8" id="prod-link-8">Active Sport Smartwatch</a></h3>
+                        <div class="product-rating">
+                            <div class="rating-stars" aria-label="Rating: 4.5 out of 5 stars">
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                                <svg viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"></path></svg>
+                            </div>
+                            <span class="rating-count">(37)</span>
+                        </div>
+                        <div class="product-price-wrapper">
+                            <span class="price-current">$199.00</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       PROMOTIONAL BANNER
+       ========================================================================== -->
+    <section class="promo-section" id="deals">
+        <div class="promo-content container">
+            <span class="promo-tag">Limited Time Only</span>
+            <h2 class="promo-title">Summer Collection</h2>
+            <p class="promo-desc">Refresh your wardrobe with up to 50% off select handcrafted garments and accessories. Free global returns included.</p>
+            <a href="#shop" class="btn btn-accent" id="promo-btn-shop">Shop Sale</a>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       NEWSLETTER SECTION
+       ========================================================================== -->
+    <section class="newsletter-section section-padding" id="newsletter">
+        <div class="container">
+            <div class="newsletter-wrapper">
+                <div class="newsletter-icon" aria-hidden="true">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                    </svg>
+                </div>
+                <h2 class="newsletter-title">Subscribe to Our Newsletter</h2>
+                <p class="newsletter-desc">Receive exclusive offers, styling guides, and early access to collection drops direct to your inbox.</p>
+                
+                <form class="newsletter-form" id="newsletter-form" novalidate>
+                    <input type="email" class="newsletter-input" id="newsletter-email" placeholder="Enter your email address" aria-label="Email address for newsletter" required>
+                    <button type="submit" class="newsletter-btn" id="newsletter-submit-btn">Subscribe</button>
+                </form>
+                <div class="newsletter-msg" id="newsletter-msg" aria-live="polite"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+    <footer class="footer" id="about">
+        <div class="container">
+            <div class="footer-top">
+                <!-- Col 1: Store info -->
+                <div class="footer-col" id="footer-info">
+                    <a href="#" class="logo footer-logo">
+                        <span class="logo-icon">A</span>
+                        <span>AURA</span>
+                    </a>
+                    <p class="footer-desc">Curating elegant clothing, timeless accessories, and minimal lifestyle goods since 2026. Made with fair trade materials and durable design.</p>
+                    <div class="social-links">
+                        <a href="https://instagram.com" class="social-link" aria-label="AURA Instagram" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                            </svg>
+                        </a>
+                        <a href="https://facebook.com" class="social-link" aria-label="AURA Facebook" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://pinterest.com" class="social-link" aria-label="AURA Pinterest" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M8 22a9 9 0 0 1-1.91-1.39c-1.54-1.5-2.22-3.8-1.57-6.07A10 10 0 0 1 12.62 3.1a9.53 9.53 0 0 1 8.27 4.19 9.38 9.38 0 0 1 .49 9.88A9.87 9.87 0 0 1 13 21.8c-.89-.04-1.63-.58-1.89-1.42l-.46-1.78a23.12 23.12 0 0 1-.84-3.32c-.06-.29.1-.53.37-.53a3 3 0 0 0 2.27-1.1 5.37 5.37 0 0 0 .5-5.59A5.27 5.27 0 0 0 7.73 6.9a5.36 5.36 0 0 0-2.4 4.54 3.73 3.73 0 0 0 1.25 2.87c.2.18.25.4.15.65a12.87 12.87 0 0 1-.77 1.86c-.11.23-.33.27-.54.12A6.67 6.67 0 0 1 3.2 11.5a8.21 8.21 0 0 1 5.56-8c3.27-.92 6.84.49 8.23 3.49A8.17 8.17 0 0 1 15 16.79a6 6 0 0 1-5.18.59"></path>
+                            </svg>
+                        </a>
+                        <a href="https://twitter.com" class="social-link" aria-label="AURA Twitter" target="_blank" rel="noopener">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Col 2: Quick Links -->
+                <div class="footer-col" id="footer-quick-links">
+                    <h4 class="footer-title">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#" class="footer-link" id="flink-home">Home</a></li>
+                        <li><a href="#shop" class="footer-link" id="flink-shop">Shop</a></li>
+                        <li><a href="#categories" class="footer-link" id="flink-categories">Categories</a></li>
+                        <li><a href="#new-arrivals" class="footer-link" id="flink-new">New Arrivals</a></li>
+                        <li><a href="#deals" class="footer-link" id="flink-deals">Deals</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 3: Customer Service -->
+                <div class="footer-col" id="footer-customer-service">
+                    <h4 class="footer-title">Customer Service</h4>
+                    <ul class="footer-links">
+                        <li><a href="#faq" class="footer-link" id="flink-faq">FAQs</a></li>
+                        <li><a href="#shipping" class="footer-link" id="flink-shipping">Shipping & Returns</a></li>
+                        <li><a href="#orders" class="footer-link" id="flink-orders">Order Tracking</a></li>
+                        <li><a href="#size-guide" class="footer-link" id="flink-size">Size Guide</a></li>
+                        <li><a href="#contact" class="footer-link" id="flink-contact">Contact Us</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Col 4: Contact Info -->
+                <div class="footer-col" id="contact">
+                    <h4 class="footer-title">Contact Information</h4>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>120 Luxury Avenue, Suite 400, New York, NY 10001</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>+1 (800) 555-0199</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>concierge@aurastore.com</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA Store. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="#privacy" class="footer-legal-link" id="flink-privacy">Privacy Policy</a>
+                    <a href="#terms" class="footer-legal-link" id="flink-terms">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       BACK-TO-TOP BUTTON
+       ========================================================================== -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Scroll back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </a>
+
+    <!-- ==========================================================================
+       SEARCH OVERLAY
+       ========================================================================== -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Products">
+        <button class="search-close-btn" id="search-close" aria-label="Close Search Overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="search-container">
+            <h2 class="search-header-text">What are you looking for?</h2>
+            <form class="search-form" id="search-overlay-form" action="#shop">
+                <input type="search" class="search-input-field" id="search-query" placeholder="Search by product, category, style..." aria-label="Search site content" autofocus>
+                <button type="submit" class="search-submit-btn" aria-label="Submit Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Link -->
+    <script src="js/main.js"></script>
+</body>
+</html>
