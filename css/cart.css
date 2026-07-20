@@ -1473,14 +1473,23 @@ input, button, select {
     height: 20px;
 }
 
-.mobile-action-link .badge {
+.mobile-action-link .badge,
+.mobile-action-link .badge-count {
+    position: relative;
+    top: auto;
+    right: auto;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
-    background-color: var(--color-accent);
-    color: var(--color-bg);
-    font-size: 0.75rem;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
     font-weight: 600;
-    padding: 2px 8px;
-    border-radius: 99px;
+    border-radius: var(--radius-full);
+    background-color: var(--primary);
+    color: var(--bg-primary);
 }
 
 .mobile-menu-toggle-chk {

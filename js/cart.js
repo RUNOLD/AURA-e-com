@@ -1,7 +1,10 @@
 cart = JSON.parse(localStorage.getItem("cart")) || [];
+wishlist = JSON.parse(localStorage.getItem("wishlist")) || []
 let cartContainer = document.getElementById("cart-items-container");
 let quantity = document.getElementById("quantity-input");
 let finalPrice = 0;
+let discount = 0;
+let discountPrice = 0;
 let checkoutData = JSON.parse(localStorage.getItem("checkoutData")) || [];
 let discountCheckoutData = JSON.parse(localStorage.getItem("discountCheckoutData")) || [];
 
@@ -118,6 +121,7 @@ function remove(productId) {
     cart.splice(cart.findIndex(product => product.id === productId), 1);
     cartContainer.innerHTML = "";
     localStorage.setItem("cart", JSON.stringify(cart));
+    calculateTotalPrice()
     displayCart()
     noOfItemsInCart();
 }
@@ -125,46 +129,103 @@ function noOfItemsInCart() {
     document.getElementById("cart-count-subtitle").innerText = `You have ${cart.length} item${cart.length !== 1 ? 's' : ''} in your cart.`;
 }
 noOfItemsInCart();
+
 let checkoutDetails;
 function calculateTotalPrice(){
     let totalProductPrice = 0;
     cart.forEach(product => {
-        totalProductPrice += product.price;
-        finalPrice = totalProductPrice.toFixed(2);
+        totalProductPrice += parseFloat(product.price || 0);
     });
-    console.log(finalPrice);
+    finalPrice = totalProductPrice.toFixed(2);
     
-    document.getElementById("subtotal").innerHTML = `$${finalPrice}`;
-    document.getElementById("grand-total").innerHTML = `$${finalPrice}`;
+    let subtotalEl = document.getElementById("subtotal");
+    let discountEl = document.getElementById("discount");
+    let sumDividerEl = document.getElementById("sumDivider");
+    let grandTotalEl = document.getElementById("grand-total");
+    
+    if (subtotalEl) {
+        subtotalEl.innerHTML = `$${finalPrice}`;
+    }
+
+    let couponInput = document.getElementById("coupon-input");
+    let couponVal = couponInput ? couponInput.value.trim().toUpperCase() : "";
+    
+    if (couponVal === "AURA10" || couponVal === "ILOVEJS10" || couponVal === "DISCOUNT10") {
+        let discountAmt = totalProductPrice * 0.1;
+        let finalGrandTotal = totalProductPrice - discountAmt;
+        
+        if (discountEl) {
+            discountEl.innerHTML = `-$${discountAmt.toFixed(2)}`;
+        }
+        if (sumDividerEl) {
+            sumDividerEl.innerHTML = `Discount applied`;
+        }
+        if (grandTotalEl) {
+            grandTotalEl.innerHTML = `$${finalGrandTotal.toFixed(2)}`;
+        }
+    } else {
+        if (discountEl) {
+            discountEl.innerHTML = "";
+        }
+        if (sumDividerEl) {
+            sumDividerEl.innerHTML = "";
+        }
+        if (grandTotalEl) {
+            grandTotalEl.innerHTML = `$${finalPrice}`;
+        }
+    }
+
     checkoutDetails = {
         subtotal: finalPrice,
-        discount
+        discount: discount
     }
     checkoutData.push(checkoutDetails);
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
 }
 calculateTotalPrice();
+
 function coupon() {
     let couponInput = document.getElementById("coupon-input").value.toUpperCase();
     if (couponInput === "AURA10" || couponInput === "ILOVEJS10" || couponInput === "DISCOUNT10") {
-        discountPrice = finalPrice * 0.9;
-        document.getElementById("grand-total").innerHTML = `$${discountPrice.toFixed(2)}`;
-        document.getElementById("discount").innerHTML = `-$${(finalPrice - discountPrice).toFixed(2)}`;
-        document.getElementById("sumDivider").innerHTML = `Discount applied`;
+        calculateTotalPrice();
         alert("Coupon applied successfully!");
-    } else{
+    } else {
+        calculateTotalPrice();
         alert("Invalid coupon code. Please try again.");
+    }
+
+    let subtotalVal = parseFloat(finalPrice);
+    let discountVal = 0;
+    if (couponInput === "AURA10" || couponInput === "ILOVEJS10" || couponInput === "DISCOUNT10") {
+        discountVal = subtotalVal * 0.1;
+        subtotalVal = subtotalVal * 0.9;
     }
 
     checkoutDetails = {
         subtotal: finalPrice,
-        discount,
-        newSubtotal: discountPrice.toFixed(2),
-        newDiscount: (finalPrice - discountPrice).toFixed(2)
+        discount: discountVal.toFixed(2),
+        newSubtotal: subtotalVal.toFixed(2),
+        newDiscount: discountVal.toFixed(2)
     };
     discountCheckoutData.push(checkoutDetails);
     localStorage.setItem("discountCheckoutData", JSON.stringify(discountCheckoutData));
 } 
+function addToWishlist(productId) {
+    let alreadyInWishlist = wishlist.some(product => product.id === productId);
+    let wishlistProduct = allApiProducts.find(product => product.id === productId);
+    if (alreadyInWishlist) {
+        alert("Product already added!");
+        return;
+    }
+    if (!wishlistProduct) {
+        alert("Product not found!");
+        return;
+    }
+    console.log(wishlistProduct);
+    wishlist.push(wishlistProduct);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert("Product added to wishlist!");
+}
 
 
 function checkout() {
@@ -329,14 +390,9 @@ function checkout() {
                                 <span class="total-value" id="checkout-shipping">$free</span>
                             </div>
                             <div class="total-row">
-                                <span class="total-label">Tax</span>
+                                <span class="total-label">VAT</span>
                     
-                                <span class="total-value" id="checkout-tax">10%</span>
-                            </div>
-                            <div class="total-row discount-row" style="display: none;">
-                                <span class="total-label">Discount</span>
-                    
-                                <span class="total-value" id="checkout-discount">-$0.00</span>
+                                <span class="total-value" id="checkout-tax">5%</span>
                             </div>
                             <div class="total-row grand-total-row">
                                 <span class="total-label">Grand Total</span>
@@ -455,22 +511,32 @@ function checkout() {
 
     
         let subtotal = document.getElementById("checkout-subtotal");
+        let shipping = document.getElementById("checkout-shipping");
+        let tax = document.getElementById("checkout-tax");
         let grandTotal = document.getElementById("checkout-total");
 
         let couponInput = document.getElementById("coupon-input");
         let couponVal = couponInput ? couponInput.value.trim().toUpperCase() : "";
 
-        
+        let subtotalVal = parseFloat(finalPrice);
+        if (couponVal === "AURA10" || couponVal === "ILOVEJS10" || couponVal === "DISCOUNT10") {
+            subtotalVal = subtotalVal * 0.9;
+        }
+
+        let vatVal = subtotalVal * 0.05;
+        let grandTotalVal = subtotalVal + vatVal;
+
         if (subtotal) {
-            subtotal.innerHTML = `$${finalPrice}`;
+            subtotal.innerHTML = `$${subtotalVal.toFixed(2)}`;
+        }
+        if (shipping) {
+            shipping.innerHTML = "Free";
+        }
+        if (tax) {
+            tax.innerHTML = `$${vatVal.toFixed(2)}`;
         }
         if (grandTotal) {
-            if (couponVal === "AURA10" || couponVal === "ILOVEJS10" || couponVal === "DISCOUNT10") {
-                let discountedPrice = finalPrice * 0.9;
-                grandTotal.innerHTML = `$${discountedPrice.toFixed(2)}`;
-            } else {
-                grandTotal.innerHTML = `$${finalPrice}`;
-            }
+            grandTotal.innerHTML = `$${grandTotalVal.toFixed(2)}`;
         }
     }
 }

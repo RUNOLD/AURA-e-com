@@ -499,13 +499,23 @@ ul {
     height: 20px;
 }
 
-.mobile-action-link .badge {
+.mobile-action-link .badge,
+.mobile-action-link .badge-count {
     position: relative;
     top: auto;
     right: auto;
     border: none;
     display: inline-flex;
+    align-items: center;
+    justify-content: center;
     margin-left: auto;
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border-radius: var(--radius-full);
+    background-color: var(--primary);
+    color: var(--bg-primary);
 }
 
 /* ==========================================================================
@@ -1817,4 +1827,82 @@ ul {
     font-size: 0.95rem;
     font-weight: 700;
     color: var(--text-primary);
+}
+/* Bottom Button slide-in overlay (CSS only) */
+.product-bottom-action {
+    position: absolute;
+    bottom: -60px;
+    left: 0;
+    width: 100%;
+    padding: 15px;
+    z-index: 10;
+    transition: var(--transition-normal);
+    opacity: 0;
+}
+
+.product-card:hover .product-bottom-action {
+    bottom: 0;
+    opacity: 1;
+}
+
+.add-cart-overlay-btn {
+    width: 100%;
+    height: 40px;
+    background-color: var(--primary);
+    color: var(--bg-primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: var(--radius-sm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    transition: var(--transition-fast);
+}
+
+.add-cart-overlay-btn:hover {
+    background-color: var(--accent);
+}
+
+/* Hover actions for quick-view and wishlist */
+.product-hover-actions {
+    position: absolute;
+    top: 15px;
+    right: -50px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    z-index: 10;
+    transition: var(--transition-normal);
+    opacity: 0;
+}
+
+.product-card:hover .product-hover-actions {
+    right: 15px;
+    opacity: 1;
+}
+
+.hover-action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--shadow-sm);
+    color: var(--text-secondary);
+    transition: var(--transition-fast);
+}
+
+.hover-action-btn:hover {
+    background-color: var(--accent);
+    color: var(--bg-primary);
+    transform: scale(1.1);
+}
+
+.hover-action-btn svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2.2;
 }

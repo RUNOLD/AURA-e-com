@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title & SEO Meta Tags -->
+    <title>Your Wishlist — AURA Curated Luxury</title>
+    <meta name="description" content="Manage your curated collection of everyday luxury beauty, designer fragrances, and gourmet essentials on AURA.">
+    <meta name="keywords" content="wishlist, luxury wishlist, saved items, premium shopping, curated lifestyle">
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/wishlist.css">
+</head>
+<body>
+    <input type="checkbox" id="mobile-menu-toggle-chk" class="mobile-menu-toggle-chk" style="display: none;">
+
+    <!-- ==========================================================================
+       1. HEADER
+       ========================================================================== -->
+    <header class="site-header">
+        <div class="container site-header-inner">
+            <!-- Left: Logo -->
+            <a href="index.html" class="logo" aria-label="AURA Home">
+                <span class="logo-icon" aria-hidden="true">A</span>
+                <span>AURA</span>
+            </a>
+
+            <!-- Center: Navigation Links -->
+            <nav class="nav-desktop" aria-label="Main Navigation">
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="#about" class="nav-link" id="nav-about">About</a></li>
+                    <!-- <li><a href="#contact" class="nav-link" id="nav-contact">Contact</a></li> -->
+                </ul>
+            </nav>
+
+            <!-- Right: Actions -->
+            <div class="header-actions">
+                <button class="action-btn" id="search-trigger" aria-label="Open Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                <a href="wishlist.html" class="action-btn active" aria-label="View Wishlist">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge-count" id="wishlist-badge">0</span>
+                </a>
+                <a href="cart.html" class="action-btn" aria-label="View Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge-count" id="header-cart-count">0</span>
+                </a>
+            </div>
+            
+            <!-- Mobile Hamburger Menu Button -->
+            <label for="mobile-menu-toggle-chk" class="hamburger-btn" id="mobile-menu-trigger" aria-label="Open Navigation Menu" aria-controls="mobile-nav-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </label>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       MOBILE NAVIGATION MENU
+       ========================================================================== -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div class="mobile-nav-drawer">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">A</span>
+                    <span>AURA</span>
+                </a>
+                <label for="mobile-menu-toggle-chk" class="close-btn" id="mobile-menu-close" aria-label="Close Navigation Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </label>
+            </div>
+            
+            <nav class="mobile-nav" aria-label="Mobile Navigation List">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link" id="mobile-nav-home">Home</a></li>
+                    <li><a href="shop.html" class="mobile-nav-link" id="mobile-nav-shop">Shop</a></li>
+                    <li><a href="#about" class="mobile-nav-link" id="mobile-nav-about">About</a></li>
+                    <!-- <li><a href="#contact" class="mobile-nav-link" id="mobile-nav-contact">Contact</a></li> -->
+                </ul>
+            </nav>
+
+            <div class="mobile-nav-actions">
+                <a href="#search" class="mobile-action-link" id="mobile-search-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search Products</span>
+                </a>
+                <a href="wishlist.html" class="mobile-action-link active">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span>Wishlist</span>
+                    <span class="badge">0</span>
+                </a>
+                <a href="cart.html" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Cart</span>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       2. WISHLIST WRAPPER
+       ========================================================================== -->
+    <main class="wishlist-page section-padding">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumbs" aria-label="Breadcrumb">
+                <a href="index.html" class="breadcrumb-link">Home</a>
+                <span class="breadcrumb-separator">/</span>
+                <span class="breadcrumb-current">Wishlist</span>
+            </nav>
+
+            <div class="wishlist-header-wrapper">
+                <span class="wishlist-subtitle">Your Selection</span>
+               
+                <p class="wishlist-desc">Manage your curated collection of personal favorites and luxury finds.</p>
+            </div>
+
+            <!-- Active Wishlist Grid (Populated dynamically via JS later, shown with placeholders for styling) -->
+            <div class="wishlist-grid" id="wishlist-grid"></div>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+       3. FOOTER
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Footer Brand Column -->
+                <div class="footer-brand-col">
+                    <a href="index.html" class="footer-logo">
+                        <span class="logo-icon">A</span>
+                        <span>AURA</span>
+                    </a>
+                    <p class="footer-about">A premium luxury lifestyle department store. Hand-curating elite French apothecary, artisan furniture, fine fragrances, and organic gourmet essentials.</p>
+                </div>
+                
+                <!-- Quick links -->
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="shop.html" class="footer-link">Departments</a></li>
+                        <li><a href="cart.html" class="footer-link">Order Status</a></li>
+                        <li><a href="#shipping" class="footer-link">Shipping & Returns</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-links-col">
+                    <h4 class="footer-heading">Inquiries</h4>
+                    <ul class="footer-links">
+                        <li><a href="index.html#contact" class="footer-link">Contact Desk</a></li>
+                        <li><a href="#concierge" class="footer-link">Concierge Services</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2026 AURA Store. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="#privacy" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#terms" class="footer-legal-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       SEARCH OVERLAY
+       ========================================================================== -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Products">
+        <button class="search-close-btn" id="search-close" aria-label="Close Search Overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="search-container">
+            <h2 class="search-header-text">What are you looking for?</h2>
+            <form class="search-form" id="search-overlay-form" action="#shop">
+                <input type="search" class="search-input-field" id="search-query" placeholder="Search by product, category, style..." aria-label="Search site content" autofocus>
+                <button type="submit" class="search-submit-btn" aria-label="Submit Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+            <div class="search-results-box" id="search-results-box"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/wishlist.js"></script>
+</body>
+</html>

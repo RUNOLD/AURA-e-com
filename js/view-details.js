@@ -1,6 +1,8 @@
 cart = JSON.parse(localStorage.getItem("cart")) || [];
-let productDetails = JSON.parse(localStorage.getItem("productDetails")) || [];
+wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
+let productDetails = JSON.parse(localStorage.getItem("productDetails")) || [];
+
 let DisplayPage = document.getElementById("page");
 console.log(cart);
 
@@ -87,7 +89,7 @@ function displayProductDetails() {
 
                 <!-- Secondary actions (wishlist, compare, share) -->
                 <div class="secondary-actions-list">
-                    <button class="sec-action-btn" id="wishlist-btn">
+                    <button onclick="addToWishlist(${productDetails.id})" class="sec-action-btn" id="wishlist-btn">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                         <span>Add to Wishlist</span>
                     </button>
@@ -429,6 +431,23 @@ function addToCart(productId) {
     cart.push(cartProduct);
     localStorage.setItem("cart", JSON.stringify(cart));
     alert("Product added to cart!");
+}
+
+function addToWishlist(productId) {
+    let alreadyInWishlist = wishlist.some(product => product.id === productId);
+    let wishlistProduct = allApiProducts.find(product => product.id === productId);
+    if (alreadyInWishlist) {
+        alert("Product already added!");
+        return;
+    }
+    if (!wishlistProduct) {
+        alert("Product not found!");
+        return;
+    }
+    console.log(wishlistProduct);
+    wishlist.push(wishlistProduct);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert("Product added to wishlist!");
 }
 
 function openFilter() {

@@ -1,6 +1,7 @@
 let productsContainer = document.getElementById("products-grid");
 allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
 cart = JSON.parse(localStorage.getItem("cart")) || [];
+wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 let allProducts = [];
 
 // Pagination variables
@@ -55,10 +56,10 @@ function renderProducts() {
               <img src="${product.thumbnail}" alt="${product.title}" class="product-img" loading="lazy">
               <!-- CSS Hover action icons -->
               <div class="product-hover-actions">
-                  <button class="hover-action-btn" aria-label="Add to Wishlist">
+                  <button onclick="addToWishlist(${product.id})" class="hover-action-btn" aria-label="Add to Wishlist">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg>
                   </button>
-                  <button class="hover-action-btn" aria-label="Quick View">
+                  <button onclick="viewDetails(${product.id})" class="hover-action-btn" aria-label="Quick View">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle></svg>
                   </button>
                   <button class="hover-action-btn" aria-label="Compare Product">
@@ -153,7 +154,7 @@ function viewDetails(productId) {
   window.location.href = "view-details.html";
 }
 function addToCart(productId) {
-    let alreadyInCart = cart.some(product => product.id === productId);
+    let alreadyInCart = wishlist.some(product => product.id === productId);
     let cartProduct = allApiProducts.find(product => product.id === productId);
     if (alreadyInCart) {
         alert("Product already added!");
@@ -168,6 +169,24 @@ function addToCart(productId) {
     localStorage.setItem("cart", JSON.stringify(cart));
     alert("Product added to cart!");
 }
+
+function addToWishlist(productId) {
+    let alreadyInWishlist = cart.some(product => product.id === productId);
+    let wishlistProduct = allApiProducts.find(product => product.id === productId);
+    if (alreadyInWishlist) {
+        alert("Product already added!");
+        return;
+    }
+    if (!wishlistProduct) {
+        alert("Product not found!");
+        return;
+    }
+    console.log(wishlistProduct);
+    wishlist.push(wishlistProduct);
+    localStorage.setItem("wishlist", JSON.stringify(wishlist));
+    alert("Product added to wishlist!");
+}
+
 
 
 
