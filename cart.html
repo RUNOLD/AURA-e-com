@@ -39,7 +39,7 @@
 
             <!-- Right: Actions -->
             <div class="header-actions">
-                <button class="action-btn" aria-label="Open Search">
+                <button onclick="openFilter()" class="action-btn" id="search-trigger" aria-label="Open Search">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -103,7 +103,7 @@
             </nav>
 
             <div class="mobile-nav-actions">
-                <a href="#search" class="mobile-action-link" id="mobile-search-trigger">
+                <a onclick="openFilter(); event.preventDefault();" href="" class="mobile-action-link" id="mobile-search-trigger">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -179,102 +179,7 @@
             <div class="cart-left-column">
                 
                 <!-- Dynamically-ready list container -->
-                <div id="cart-items-container" class="cart-items-container">
-                    
-                    
-                    <!-- <article class="cart-item-card cart-item" data-id="1">
-                        <div class="cart-item-image">
-                            <img src="images/products/sneakers.png" alt="AURA Air Zoom Minimalist Sneakers" class="product-image">
-                        </div>
-                        <div class="cart-item-details">
-                            <div class="cart-item-header">
-                                <div class="cart-item-info">
-                                    <span class="cart-item-brand">AURA</span>
-                                    <h3 class="cart-item-name product-name">
-                                        <a href="view-details.html">Air Zoom Minimalist Sneakers</a>
-                                    </h3>
-                                </div>
-                                <div class="cart-item-price-block">
-                                    <span class="cart-item-price product-price">$140.00</span>
-                                    <span class="cart-item-unit-price">Unit: $140.00</span>
-                                </div>
-                            </div>
-                            
-                            <div class="cart-item-attributes">
-                                <span class="attribute-item">
-                                    <strong>Color:</strong> White
-                                    <span class="color-dot" style="background-color: #FFFFFF;"></span>
-                                </span>
-                                <span class="attribute-item">
-                                    <strong>Size:</strong> US 10
-                                </span>
-                            </div>
-                            
-                            <div class="cart-item-status status-in-stock">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                                    <polyline points="20 6 9 17 4 12"></polyline>
-                                </svg>
-                                <span>In Stock</span>
-                            </div>
-                            
-                            <div class="cart-item-footer">
-                                <div class="quantity-selector product-quantity">
-                                    <button type="button" class="quantity-btn quantity-minus" aria-label="Decrease quantity">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                    <input type="number" class="quantity-input" value="1" min="1" max="99" aria-label="Quantity" readonly>
-                                    <button type="button" class="quantity-btn quantity-plus" aria-label="Increase quantity">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
-                                            <line x1="12" y1="5" x2="12" y2="19"></line>
-                                            <line x1="5" y1="12" x2="19" y2="12"></line>
-                                        </svg>
-                                    </button>
-                                </div>
-                                
-                                <div class="cart-item-actions">
-                                    <button class="action-link move-to-wishlist" aria-label="Move item to wishlist">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                                        </svg>
-                                        <span>Wishlist</span>
-                                    </button>
-                                    <button class="action-link action-link-remove remove-item" aria-label="Remove item from cart">
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                            <polyline points="3 6 5 6 21 6"></polyline>
-                                            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-                                            <line x1="10" y1="11" x2="10" y2="17"></line>
-                                            <line x1="14" y1="11" x2="14" y2="17"></line>
-                                        </svg>
-                                        <span>Remove</span>
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </article> -->
-
-                </div>
-
-                <!-- ==========================================================================
-                   EMPTY CART DESIGN (WRAPPED IN COMMENTS FOR JS INTEGRATION)
-                   ========================================================================== -->
-                <!-- 
-                <div id="empty-cart-view" class="empty-cart-container" style="text-align: center; padding: 60px 24px;">
-                    <div class="empty-cart-illustration" style="margin-bottom: 24px; color: var(--color-text-muted);">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" width="80" height="80" style="margin: 0 auto;">
-                            <circle cx="9" cy="21" r="1"></circle>
-                            <circle cx="20" cy="21" r="1"></circle>
-                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-                            <line x1="12" y1="10" x2="12" y2="15"></line>
-                            <line x1="10" y1="12" x2="14" y2="12"></line>
-                        </svg>
-                    </div>
-                    <h2 class="empty-cart-title" style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 12px; color: var(--color-primary);">Your Cart is Empty</h2>
-                    <p class="empty-cart-desc" style="color: var(--color-text-muted); margin-bottom: 30px; max-width: 400px; margin-left: auto; margin-right: auto;">Looks like you haven't added anything to your cart yet. Head back to the store to explore our collections.</p>
-                    <a href="shop.html" id="continue-shopping" class="btn btn-primary">Continue Shopping</a>
-                </div>
-                -->
+                <div id="cart-items-container" class="cart-items-container"></div>
 
             </div>
 
@@ -292,32 +197,29 @@
                             <span class="summary-row-label">Shipping</span>
                             <span id="shipping" class="summary-row-value">FREE</span>
                         </div>
-                        <div class="summary-row">
-                            <span class="summary-row-label">Estimated Tax (8%)</span>
-                            <span id="tax" class="summary-row-value">$67.12</span>
-                        </div>
+                       
                         <div class="summary-row discount">
                             <span class="summary-row-label">Discount (10% Off)</span>
-                            <span id="discount" class="summary-row-value">-$83.90</span>
-                        </div>
+                            <span id="discount" class="summary-row-value"></span>
+                        </div> 
                         
-                        <div class="summary-divider"></div>
+                        <div id="sumDivider" class="summary-divider"></div>
                         
                         <div class="summary-row summary-total">
                             <span>Total</span>
-                            <span id="grand-total">$822.22</span>
+                            <span id="grand-total"></span>
                         </div>
                     </div>
                     
                     <!-- Coupon Block -->
                     <div class="coupon-input-wrapper">
                         <input type="text" id="coupon-input" class="coupon-input" placeholder="Promo code (e.g. AURA10)" aria-label="Promo code">
-                        <button type="button" id="apply-coupon" class="btn btn-secondary">Apply</button>
+                        <button onclick="coupon()" type="button" id="apply-coupon" class="btn btn-secondary">Apply</button>
                     </div>
                     
                     <!-- Checkout & Shopping Action buttons -->
                     <div class="summary-actions">
-                        <a href="#checkout" id="checkout-btn" class="btn btn-primary btn-full">
+                        <a onclick="checkout()" href="#checkout" id="checkout-btn" class="btn btn-primary btn-full">
                             <span>Proceed to Checkout</span>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="16" height="16">
                                 <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -760,6 +662,95 @@
         </div>
     </footer>
 
+    <!-- MODAL -->
+    <!-- ==========================================================================
+       CHECKOUT MODAL OVERLAY
+       ========================================================================== -->
+    <!-- JavaScript Hook: Show checkout-overlay class list toggle (add 'active') -->
+    <div class="checkout-overlay" id="checkout-overlay" role="dialog" aria-modal="true" aria-labelledby="checkout-title">
+        
+    </div>
+
+
+    <!-- ==========================================================================
+       PROCESSING / LOADING OVERLAY
+       ========================================================================== -->
+    <!-- JavaScript Hook: Toggle active class to show/hide processing overlay -->
+    <div class="processing-overlay" id="processing-overlay" role="dialog" aria-modal="true" aria-label="Processing Payment">
+        <div class="processing-content">
+            <div class="spinner-box">
+                <div class="loading-spinner"></div>
+            </div>
+            <p class="processing-text">Processing Payment...</p>
+        </div>
+    </div>
+
+
+    <!-- ==========================================================================
+       SUCCESS MODAL OVERLAY
+       ========================================================================== -->
+    <!-- JavaScript Hook: Toggle active class to show success screen after payment -->
+    <div class="success-overlay" id="success-modal" role="dialog" aria-modal="true" aria-labelledby="success-title">
+        <div class="success-modal-card">
+            <div class="success-icon-wrapper">
+                <div class="success-checkmark-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="48" height="48">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2 id="success-title" class="success-title">Payment Successful</h2>
+            <p class="success-message">Thank you for your purchase. Your order has been placed successfully and is being processed.</p>
+            
+            <div class="success-details-box">
+                <div class="detail-item">
+                    <span class="detail-label">Order Number</span>
+                    <!-- JavaScript Hook: Dynamically insert order number -->
+                    <span class="detail-value" id="order-number">#AURA-987452</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Estimated Delivery</span>
+                    <!-- JavaScript Hook: Dynamically insert date -->
+                    <span class="detail-value" id="delivery-date">Oct 18, 2026</span>
+                </div>
+            </div>
+            
+            <div class="success-actions">
+                <!-- JavaScript Hook: Handle navigation and storage clearing -->
+                <a href="shop.html" class="btn btn-success-continue" id="continue-shopping">Continue Shopping</a>
+                <!-- JavaScript Hook: Optional action to view tracking details -->
+                <a href="#orders" class="btn btn-success-view" id="view-order">View Order</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       SEARCH OVERLAY
+       ========================================================================== -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Products">
+        <button onclick="closeSearch()" class="search-close-btn" id="search-close" aria-label="Close Search Overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="search-container">
+            <h2 class="search-header-text">What are you looking for?</h2>
+            <form class="search-form" id="search-overlay-form" action="#shop">
+                <input oninput="search()" type="search" class="search-input-field" id="search-query" placeholder="Search by product, category, style..." aria-label="Search site content" autofocus>
+                <button onclick="submitSearch()" type="submit" class="search-submit-btn" aria-label="Submit Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+            <div class="search-results-box" id="search-results-box"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="./js/cart.js"></script>
 </body>
 </html>
-<script src="./js/cart.js"></script>

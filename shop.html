@@ -42,7 +42,7 @@
             <!-- Right: Actions -->
             <div class="header-actions">
                 <!-- Search Icon -->
-                <button class="action-btn" aria-label="Open Search">
+                <button id="search-trigger" class="action-btn" aria-label="Open Search">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="11" cy="11" r="8"></circle>
                         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -173,8 +173,8 @@
        ========================================================================== -->
     <section class="shop-hero">
         <div class="container">
-            <h1 class="hero-title">Shop Our Collection</h1>
-            <p class="hero-desc">Discover premium products carefully selected for quality and style. From minimal couture to state-of-the-art accessories.</p>
+            <h1 class="hero-title">Shop Our Departments</h1>
+            <p class="hero-desc">Explore our collections of premium beauty apothecary, smart technology, designer furniture, and curated everyday essentials.</p>
         </div>
     </section>
 
@@ -205,37 +205,31 @@
                 
                 <!-- Categories -->
                 <div class="filter-section">
-                    <h2 class="filter-title">Categories</h2>
+                    <h2 class="filter-title">Departments</h2>
                     <div class="filter-list">
                         <label class="checkbox-label">
-                            <input type="checkbox" name="category" value="men">
+                            <input type="checkbox" name="category" value="beauty">
                             <span class="custom-checkbox"></span>
-                            <span>Men</span>
-                            <span class="filter-count">12</span>
+                            <span>Beauty & Apothecary</span>
+                            <span class="filter-count">5</span>
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="category" value="women">
+                            <input type="checkbox" name="category" value="fragrances">
                             <span class="custom-checkbox"></span>
-                            <span>Women</span>
-                            <span class="filter-count">16</span>
+                            <span>Luxury Fragrances</span>
+                            <span class="filter-count">4</span>
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="category" value="shoes">
+                            <input type="checkbox" name="category" value="furniture">
                             <span class="custom-checkbox"></span>
-                            <span>Shoes</span>
-                            <span class="filter-count">8</span>
+                            <span>Designer Furniture</span>
+                            <span class="filter-count">6</span>
                         </label>
                         <label class="checkbox-label">
-                            <input type="checkbox" name="category" value="accessories">
+                            <input type="checkbox" name="category" value="groceries">
                             <span class="custom-checkbox"></span>
-                            <span>Accessories</span>
-                            <span class="filter-count">9</span>
-                        </label>
-                        <label class="checkbox-label">
-                            <input type="checkbox" name="category" value="electronics">
-                            <span class="custom-checkbox"></span>
-                            <span>Electronics</span>
-                            <span class="filter-count">3</span>
+                            <span>Gourmet Groceries</span>
+                            <span class="filter-count">15</span>
                         </label>
                     </div>
                 </div>
@@ -482,7 +476,7 @@
                         <span class="logo-icon">A</span>
                         <span>AURA</span>
                     </a>
-                    <p class="footer-desc">Curating elegant clothing, timeless accessories, and minimal lifestyle goods since 2026. Made with fair trade materials and durable design.</p>
+                    <p class="footer-desc">Curating premium beauty apothecary, smart technology, modern furniture, designer apparel, and gourmet essentials since 2026. Thoughtfully selected for luxury living.</p>
                     <div class="social-links">
                         <a href="https://instagram.com" class="social-link" aria-label="AURA Instagram" target="_blank" rel="noopener">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -571,6 +565,32 @@
         </div>
     </footer>
 
+    <!-- ==========================================================================
+       SEARCH OVERLAY
+       ========================================================================== -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Products">
+        <button class="search-close-btn" id="search-close" aria-label="Close Search Overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="search-container">
+            <h2 class="search-header-text">What are you looking for?</h2>
+            <form class="search-form" id="search-overlay-form" action="#shop">
+                <input type="search" class="search-input-field" id="search-query" placeholder="Search by product, category, style..." aria-label="Search site content" autofocus>
+                <button type="submit" class="search-submit-btn" aria-label="Submit Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+            <div class="search-results-box" id="search-results-box"></div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="./js/product.js" defer></script>
 </body>
 </html>
-<script src="./js/product.js" defer></script>

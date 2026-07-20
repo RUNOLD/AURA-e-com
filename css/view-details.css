@@ -1,29 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* ==========================================================================
    Root Variables
    ========================================================================== */
 :root {
     /* Color Palette */
-    --primary: #111111;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-light: #EFF6FF;
+    --primary: #1F2937;
+    --accent: #A4855F;
+    --accent-hover: #8D704E;
+    --accent-light: #FAF9F6;
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FA;
-    --border-color: #E5E7EB;
-    --text-primary: #111111;
-    --text-secondary: #333333;
-    --text-muted: #888888;
+    --bg-secondary: #FAF9F6;
+    --border-color: #EBE7E0;
+    --text-primary: #1F2937;
+    --text-secondary: #4B5563;
+    --text-muted: #9CA3AF;
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
     
     /* Typography */
     --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
     
     /* Border Radius */
     --radius-sm: 8px;
@@ -123,10 +124,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .section-title {
+    font-family: var(--font-serif);
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     position: relative;
     padding-bottom: 12px;
     border-bottom: 2px solid var(--border-color);
@@ -391,7 +393,8 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 24px;
     transition: transform 0.5s ease;
 }
 
@@ -446,7 +449,8 @@ h1, h2, h3, h4, h5, h6 {
 .product-thumbnail-card img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 4px;
     transition: var(--transition-fast);
 }
 
@@ -484,10 +488,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .product-main-title {
+    font-family: var(--font-serif);
     font-size: 2.25rem;
     font-weight: 700;
     margin-bottom: 12px;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     color: var(--text-primary);
 }
 
@@ -1870,3 +1875,306 @@ h1, h2, h3, h4, h5, h6 {
     }
 }
 
+/* ==========================================================================
+   SEARCH OVERLAY (Added for global search compatibility)
+   ========================================================================== */
+.search-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.98);
+    z-index: 250;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-normal);
+}
+
+.search-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.search-close-btn {
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-full);
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    border: none;
+    cursor: pointer;
+}
+
+.search-close-btn:hover {
+    color: var(--primary);
+}
+
+.search-container {
+    width: 100%;
+    max-width: 700px;
+    text-align: center;
+    position: relative;
+}
+
+.search-header-text {
+    font-family: var(--font-serif);
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 24px;
+    letter-spacing: -0.02em;
+}
+
+.search-form {
+    display: flex;
+    border-bottom: 2.5px solid var(--primary);
+    padding-bottom: 10px;
+    align-items: center;
+}
+
+.search-input-field {
+    flex-grow: 1;
+    font-size: 1.5rem;
+    color: var(--text-primary);
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    outline: none;
+}
+
+.search-input-field::placeholder {
+    color: var(--text-muted);
+}
+
+.search-submit-btn {
+    color: var(--text-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.search-submit-btn svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Search Results Box inside Overlay */
+.search-results-box {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    display: none;
+    text-align: left;
+    padding: 10px;
+}
+
+.search-results-box.active {
+    display: block;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+    text-decoration: none;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(4px);
+}
+
+.search-result-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-secondary);
+    padding: 4px;
+}
+
+.search-result-info {
+    flex-grow: 1;
+}
+
+.search-result-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.search-result-cat {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.search-result-price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.search-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+}
+
+.search-empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    opacity: 0.6;
+    animation: searchPulse 2s infinite ease-in-out;
+}
+
+.search-empty-title {
+    font-family: var(--font-serif); /* Uses Playfair Serif */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.search-empty-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 320px;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+/* Subtle micro-animation pulse for empty icon */
+@keyframes searchPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* Clickable Search Result Row Card */
+.search-result-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+/* Removes line separator on the last element */
+.search-result-row:last-of-type {
+    border-bottom: none;
+}
+
+/* Elegant slide-in transition & background shift */
+.search-result-row:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(6px);
+}
+
+/* Product thumbnail box */
+.search-result-image-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+    padding: 4px;
+}
+
+.search-result-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.search-result-row:hover .search-result-thumbnail {
+    transform: scale(1.08); /* Micro-zoom on hover */
+}
+
+/* Category & Title Typography */
+.search-result-metadata {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.search-result-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--primary); /* Curated gold/bronze accent */
+    letter-spacing: 0.05em;
+}
+
+.search-result-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Price Box */
+.search-result-price-wrapper {
+    flex-shrink: 0;
+}
+
+.search-result-price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}

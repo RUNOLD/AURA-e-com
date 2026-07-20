@@ -1,29 +1,30 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
 /* ==========================================================================
    DESIGN SYSTEM & CSS VARIABLES
    ========================================================================== */
 :root {
     /* Color Palette */
-    --primary: #111111;
-    --accent: #2563EB;
-    --accent-hover: #1D4ED8;
-    --accent-light: #EFF6FF;
+    --primary: #1F2937;
+    --accent: #A4855F;
+    --accent-hover: #8D704E;
+    --accent-light: #FAF9F6;
     --bg-primary: #FFFFFF;
-    --bg-secondary: #F8F9FA;
-    --text-primary: #111111;
+    --bg-secondary: #FAF9F6;
+    --text-primary: #1F2937;
     --text-secondary: #4B5563;
     --text-muted: #9CA3AF;
-    --border-color: #E5E7EB;
+    --border-color: #EBE7E0;
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.05);
-    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.08);
-    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.12);
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.04);
+    --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.05);
+    --shadow-hover: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
     
     /* Typography */
     --font-sans: 'Outfit', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, serif;
     
     /* Border Radius */
     --radius-sm: 8px;
@@ -128,10 +129,11 @@ ul {
 }
 
 .section-title {
+    font-family: var(--font-serif);
     font-size: 2.25rem;
     font-weight: 700;
     color: var(--text-primary);
-    letter-spacing: -0.02em;
+    letter-spacing: -0.01em;
     line-height: 1.2;
 }
 
@@ -542,11 +544,12 @@ ul {
 }
 
 .hero-title {
+    font-family: var(--font-serif);
     font-size: 3.75rem;
     font-weight: 700;
     line-height: 1.1;
     color: var(--primary);
-    letter-spacing: -0.03em;
+    letter-spacing: -0.01em;
     margin-bottom: 20px;
 }
 
@@ -912,7 +915,8 @@ ul {
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
+    padding: 16px;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -1605,4 +1609,212 @@ ul {
 .search-submit-btn svg {
     width: 28px;
     height: 28px;
+}
+
+/* Search Results Box inside Overlay */
+.search-results-box {
+    margin-top: 20px;
+    width: 100%;
+    max-height: 350px;
+    overflow-y: auto;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border-color);
+    display: none;
+    text-align: left;
+    padding: 10px;
+}
+
+.search-results-box.active {
+    display: block;
+}
+
+.search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 12px 15px;
+    border-radius: var(--radius-sm);
+    transition: var(--transition-fast);
+    text-decoration: none;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+.search-result-item:last-child {
+    border-bottom: none;
+}
+
+.search-result-item:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(4px);
+}
+
+.search-result-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-secondary);
+    padding: 4px;
+}
+
+.search-result-info {
+    flex-grow: 1;
+}
+
+.search-result-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    margin-bottom: 2px;
+}
+
+.search-result-cat {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.search-result-price {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent);
+}
+
+.search-no-results {
+    padding: 20px;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+/* Search Empty State Styling */
+.search-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    text-align: center;
+    background-color: var(--bg-primary);
+    border-radius: var(--radius-md);
+}
+
+.search-empty-icon {
+    color: var(--text-muted);
+    margin-bottom: 16px;
+    opacity: 0.6;
+    animation: searchPulse 2s infinite ease-in-out;
+}
+
+.search-empty-title {
+    font-family: var(--font-serif); /* Uses Playfair Serif */
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+    letter-spacing: -0.01em;
+}
+
+.search-empty-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    max-width: 320px;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+
+/* Subtle micro-animation pulse for empty icon */
+@keyframes searchPulse {
+    0% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.05); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 0.6; }
+}
+
+/* Clickable Search Result Row Card */
+.search-result-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    border-bottom: 1px solid var(--border-color);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+/* Removes line separator on the last element */
+.search-result-row:last-of-type {
+    border-bottom: none;
+}
+
+/* Elegant slide-in transition & background shift */
+.search-result-row:hover {
+    background-color: var(--bg-secondary);
+    transform: translateX(6px);
+}
+
+/* Product thumbnail box */
+.search-result-image-wrapper {
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+    border: 1px solid var(--border-color);
+    padding: 4px;
+}
+
+.search-result-thumbnail {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.25s ease;
+}
+
+.search-result-row:hover .search-result-thumbnail {
+    transform: scale(1.08); /* Micro-zoom on hover */
+}
+
+/* Category & Title Typography */
+.search-result-metadata {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.search-result-category {
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--primary); /* Curated gold/bronze accent */
+    letter-spacing: 0.05em;
+}
+
+.search-result-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Price Box */
+.search-result-price-wrapper {
+    flex-shrink: 0;
+}
+
+.search-result-price {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--text-primary);
 }

@@ -1,6 +1,6 @@
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart = JSON.parse(localStorage.getItem("cart")) || [];
 let productDetails = JSON.parse(localStorage.getItem("productDetails")) || [];
-let allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
+allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
 let DisplayPage = document.getElementById("page");
 console.log(cart);
 
@@ -429,6 +429,66 @@ function addToCart(productId) {
     cart.push(cartProduct);
     localStorage.setItem("cart", JSON.stringify(cart));
     alert("Product added to cart!");
+}
+
+function openFilter() {
+    document.getElementById('search-overlay').classList.add('open')
+}
+
+function closeSearch(params) {
+    document.getElementById('search-overlay').classList.remove('open');
+}
+
+function search() {
+    let searchInput = document.getElementById("search-query");
+  let searchTerm = searchInput.value.toLowerCase().trim();
+  console.log(allApiProducts);
+  
+
+  let filteredProducts = allApiProducts.filter((product) => {
+    return product.title.toLowerCase().includes(searchTerm);
+  });
+  console.log(filteredProducts);
+  if (!filteredProducts || filteredProducts.length === 0) {
+    document.getElementById("search-results-box").style.display = 'block'
+    document.getElementById("search-results-box").innerHTML = `
+    <div class="search-empty-state">
+    <div class="search-empty-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" width="48" height="48">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <line x1="8" y1="11" x2="14" y2="11"></line>
+        </svg>
+    </div>
+    <h3 class="search-empty-title">No Curated Results</h3>
+    <p class="search-empty-desc">We couldn't find any luxury provisions matching your search query. Try checking your spelling or search for categories like "beauty", "honey", "sofa", or "perfume".</p>
+</div>
+    `
+  } else {
+    document.getElementById("search-results-box").style.display = 'block'
+    
+    filteredProducts.forEach((product, index) => {
+    document.getElementById("search-results-box").innerHTML  += `
+      <a onclick = "viewDetails(${product.id}); event.preventDefault();" href="javascript:void(0)" class="search-result-row" data-id="PRODUCT_ID">
+    <div class="search-result-image-wrapper">
+        <img src="${product.thumbnail}" alt="PRODUCT_TITLE" class="search-result-thumbnail">
+    </div>
+    <div class="search-result-metadata">
+        <span class="search-result-category">${product.category}</span>
+        <h4 class="search-result-name">${product.title}</h4>
+    </div>
+    <div class="search-result-price-wrapper">
+        <span class="search-result-price">$${product.price}</span>
+    </div>
+</a>
+    `;
+  });
+  }
+
+
+}
+function closeCheckout() {
+    document.getElementById("checkout-overlay").style.display = "none";
 }
 
 // Mobile Navigation Drawer Toggle

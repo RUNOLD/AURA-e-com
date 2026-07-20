@@ -1,6 +1,6 @@
 let productsContainer = document.getElementById("products-grid");
-let allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
-let cart = JSON.parse(localStorage.getItem("cart")) || [];
+allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
+cart = JSON.parse(localStorage.getItem("cart")) || [];
 let allProducts = [];
 
 // Pagination variables
@@ -170,41 +170,7 @@ function addToCart(productId) {
 }
 
 
-// function filterProducts(params) {
-//   const searchInput = document.getElementById("search");
-//   const searchTerm = searchInput.value.toLowerCase().trim();
 
-//   const filteredProducts = allProducts.filter((product) => {
-//     return product.title.toLowerCase().includes(searchTerm);
-//   });
-//   console.log(filteredProducts);
-
-//   displayFilteredProducts(filteredProducts);
-// }
-
-// function displayFilteredProducts(filteredProducts) {
-//   productsContainer.innerHTML = "";
-
-//   filteredProducts.forEach((product, index) => {
-//     productsContainer.innerHTML += `
-//       <div class="product-card">
-//           <div class="product-img-wrapper">
-//               <img src="${product.thumbnail}" alt="${product.title}">
-//               <span class="product-badge">-${product.discountPercentage}%</span>
-//           </div>
-//           <div class="product-info">
-//               <div class="product-category">${product.category}</div>
-//               <div class="product-title">${product.title.length <= 20 ? product.title : product.title.slice(0, 20) + "..."}</div>
-//               <div class="product-bottom">
-//                   <div class="product-price">
-//                       <span class="price-current">$${(product.price - (product.discountPercentage / 100) * product.price).toFixed(2)}</span>
-//                   </div>
-//                   <button onclick="viewDetails(${index})" class="add-to-cart-btn">View</button>
-//               </div>
-//           </div>
-//       </div>
-//     `;
-//   });
 // Mobile Navigation Drawer Toggle
 document.addEventListener("DOMContentLoaded", () => {
     const mobileMenuTrigger = document.getElementById("mobile-menu-trigger");
