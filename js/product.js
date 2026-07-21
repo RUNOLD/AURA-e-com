@@ -3,6 +3,7 @@ allApiProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
 cart = JSON.parse(localStorage.getItem("cart")) || [];
 wishlist = JSON.parse(localStorage.getItem("wishlist")) || [];
 let allProducts = [];
+let checkBox = document.querySelectorAll(".checkBox-filter:checked")
 
 // Pagination variables
 let currentPage = 1;
@@ -188,20 +189,26 @@ function addToWishlist(productId) {
     alert("Product added to wishlist!");
 } 
 
-function checkFilter(){
-
-}
 function check(){
-  let checkBox = document.querySelectorAll(".checkBox-filter:checked")
-  let checkBoxChecked = checkBox
-  console.log(checkBox);
+  let checkBox = document.querySelectorAll(".checkBox-filter:checked");
+  let selectedCategories = [];
   
-  console.log(checkBoxChecked);
+  checkBox.forEach(function (chk) {
+    selectedCategories.push(chk.value);
+  });
+
+  let originalProducts = JSON.parse(localStorage.getItem("allApiProducts")) || [];
   
-  checkBox.forEach((check) => {
-    console.log(check);
-    
-  })
+  if (selectedCategories.length === 0) {
+    allProducts = originalProducts;
+  } else {
+    allProducts = originalProducts.filter(function (product) {
+      return selectedCategories.includes(product.category);
+    });
+  }
+  
+  currentPage = 1;
+  renderProducts();
 }
 
 
