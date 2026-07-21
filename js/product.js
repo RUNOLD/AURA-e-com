@@ -44,6 +44,8 @@ function renderProducts() {
 
   // Loop and add each product to the page
   productsToShow.forEach((product, index) => {
+    // console.log(product.category);
+    
     // Calculate actual index in allProducts array
     let actualIndex = start + index;
 
@@ -145,7 +147,6 @@ pageLinks.forEach(function (link) {
     }
   });
 });
-
 // Original detail viewing function
 function viewDetails(productId) {
   let selectedProduct = allProducts.find(product => product.id === productId);
@@ -185,6 +186,22 @@ function addToWishlist(productId) {
     wishlist.push(wishlistProduct);
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
     alert("Product added to wishlist!");
+} 
+
+function checkFilter(){
+
+}
+function check(){
+  let checkBox = document.querySelectorAll(".checkBox-filter:checked")
+  let checkBoxChecked = checkBox
+  console.log(checkBox);
+  
+  console.log(checkBoxChecked);
+  
+  checkBox.forEach((check) => {
+    console.log(check);
+    
+  })
 }
 
 
