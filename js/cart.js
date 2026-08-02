@@ -362,6 +362,16 @@ function checkout() {
                                 <span class="form-error">Please enter a valid phone number.</span>
                             </div>
                         </div>
+
+                        <div class="form-group-row">
+                            <div class="form-group">
+                                <label for="shipping-address" class="form-label">Shipping Address</label>
+                                <div class="input-wrapper">
+                                    <input type="text" id="shipping-address" name="shipping-address" class="form-input" placeholder="e.g. 120 Luxury Avenue, Suite 400, New York, NY 10001" required>
+                                </div>
+                                <span class="form-error">Please enter the shipping address.</span>
+                            </div>
+                        </div>
                     </form>
                 </div>
 
@@ -610,8 +620,9 @@ function confirmCheckoutPayment(params) {
     let cvv = document.getElementById("cvv").value;
     let email = document.getElementById("email").value;
     let phone = document.getElementById("phone").value;
+    let shippingAddress = document.getElementById("shipping-address").value;
 
-    if (!cardholderName || !cardNumber || !expiryDate || !cvv || !email) {
+    if (!cardholderName || !cardNumber || !expiryDate || !cvv || !email || !shippingAddress) {
         alert("Please fill in all required fields.");
         return;
     }
@@ -635,6 +646,141 @@ function confirmCheckoutPayment(params) {
         alert("Please enter a valid email address.");
         return;
     }
+    if (shippingAddress.trim().length < 8) {
+        alert("Please enter a valid, complete shipping address.");
+        return;
+    }
 
-    alert(`${cardholderName}, Payment successful! Thank you for your purchase.`);
+    
+    // Generate order ID and dates
+    let randomNum = Math.floor(100000 + Math.random() * 900000);
+    let orderId = "AURA-" + randomNum;
+    let OrderNumber = "#" + orderId;
+
+    let today = new Date();
+    let deliveryDate = new Date();
+    deliveryDate.setDate(today.getDate() + 4);
+    
+    let options = { month: "short", day: "numeric", year: "numeric" };
+    let DeliveryDate = deliveryDate.toLocaleDateString("en-US", options);
+
+    // Calculate order summary totals
+    let couponInput = document.getElementById("coupon-input");
+    let couponVal = couponInput ? couponInput.value.trim().toUpperCase() : "";
+
+    let totalProductPrice = 0;
+    cart.forEach(product => {
+        totalProductPrice += parseFloat(product.price || 0);
+    });
+
+    let discountAmt = 0;
+    if (couponVal === "AURA10" || couponVal === "ILOVEJS10" || couponVal === "DISCOUNT10") {
+        discountAmt = totalProductPrice * 0.1;
+    }
+
+    let subtotalVal = totalProductPrice;
+    let subtotalAfterDiscount = subtotalVal - discountAmt;
+    let vatVal = subtotalAfterDiscount * 0.05;
+    let grandTotalVal = subtotalAfterDiscount + vatVal;
+
+    let cleanCardNumber = cardNumber.replace(/\s/g, '');
+    let last4 = cleanCardNumber.slice(-4) || "4242";
+
+    // Build complete order object with checkout shipping address, items, and totals
+    let newOrder = {
+        id: orderId,
+        orderNumber: OrderNumber,
+        orderDate: today.toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+        deliveryDate: DeliveryDate,
+        shippingMethod: "Courier Express Delivery (Tracked)",
+        trackingNumber: "TRK-" + Math.floor(10000000 + Math.random() * 90000000) + "-US",
+        status: "Processing",
+        shippingAddress: {
+            name: cardholderName,
+            address: shippingAddress,
+            phone: phone || "+1 (555) 0199",
+            email: email
+        },
+        paymentMethod: {
+            brand: "Visa",
+            last4: last4,
+            cardholderName: cardholderName,
+            transactionId: "Auth_" + Math.floor(100000 + Math.random() * 900000),
+            paymentDate: today.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" }) + " | " + today.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
+            paymentStatus: "Authorized & Paid"
+        },
+        items: JSON.parse(JSON.stringify(cart)),
+        totals: {
+            subtotal: subtotalVal.toFixed(2),
+            shipping: "0.00",
+            shippingText: "$0.00 (Free Shipping)",
+            tax: vatVal.toFixed(2),
+            discount: discountAmt.toFixed(2),
+            discountCode: couponVal,
+            grandTotal: grandTotalVal.toFixed(2)
+        }
+    };
+
+    // Save order details to localStorage
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
+    localStorage.setItem("orderDetails", JSON.stringify(newOrder));
+    localStorage.setItem("latestOrder", JSON.stringify(newOrder));
+    localStorage.setItem("orderItems", JSON.stringify(newOrder.items));
+    localStorage.setItem("shippingAddressData", JSON.stringify(newOrder.shippingAddress));
+
+    // 3. Fallback: Create success-modal container if it doesn't exist in HTML
+    let successModal = document.getElementById("success-modal");
+    if (!successModal) {
+        successModal = document.createElement("div");
+        successModal.id = "success-modal";
+        successModal.className = "success-overlay";
+        document.body.appendChild(successModal);
+    }
+
+    // 4. Populate and display the success modal
+    document.getElementById("checkout-overlay").style.display = "none";
+    successModal.style.display = "block";
+    successModal.innerHTML = `
+        <div class="success-modal-card">
+            <div class="success-icon-wrapper">
+                <div class="success-checkmark-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" width="48" height="48">
+                        <polyline points="20 6 9 17 4 12"></polyline>
+                    </svg>
+                </div>
+            </div>
+            
+            <h2 id="success-title" class="success-title">Payment Successful</h2>
+            <p class="success-message">Thank you for your purchase. Your order has been placed successfully and is being processed.</p>
+            
+            <div class="success-details-box">
+                <div class="detail-item">
+                    <span class="detail-label">Order Number</span>
+                    <span class="detail-value" id="order-number">${OrderNumber}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="detail-label">Estimated Delivery</span>
+                    <span class="detail-value" id="delivery-date">${DeliveryDate}</span>
+                </div>
+            </div>
+            
+            <div class="success-actions">
+                <a href="shop.html" class="btn btn-success-continue" id="continue-shopping">Continue Shopping</a>
+                <a href="view-order.html" onclick="viewOrder('${orderId}'); event.preventDefault();" class="btn btn-success-view" id="view-order">View Order</a>
+            </div>
+        </div>
+    `;
+
+    // 5. Clear the cart upon successful payment
+    cart = [];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    
+    // 6. Refresh cart displays and header badges
+    if (typeof updateBadges === "function") {
+        updateBadges();
+    }
+    displayCart();
+    calculateTotalPrice();
 }

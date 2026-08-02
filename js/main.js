@@ -11,6 +11,15 @@ function viewDetails(productId) {
     }
 }
 
+function viewOrder(orderId) {
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const order = orders.find(o => o.id === orderId || o.orderNumber === orderId || o.orderNumber === "#" + orderId);
+    if (order) {
+        localStorage.setItem("orderDetails", JSON.stringify(order));
+    }
+    window.location.href = "view-order.html";
+}
+
 function addToCart(productId) {
     const alreadyInCart = cart.some(p => p.id === productId);
     const product = allApiProducts.find(p => p.id === productId);

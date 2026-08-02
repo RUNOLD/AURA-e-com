@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title & SEO Meta Tags -->
+    <title>Order Details — AURA Curated Luxury</title>
+    <meta name="description" content="View transaction summary, items purchased, shipping logistics and tracking statistics for your AURA orders.">
+    <meta name="keywords" content="order details, tracking package, e-commerce receipt, logistics status, aura store">
+    
+    <!-- CSS Stylesheets -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/view-order.css">
+</head>
+<body>
+    <input type="checkbox" id="mobile-menu-toggle-chk" class="mobile-menu-toggle-chk" style="display: none;">
+
+    <!-- ==========================================================================
+       1. HEADER (STICKY NAVBAR)
+       ========================================================================== -->
+    <header class="header" id="header">
+        <div class="container">
+            <!-- Left: Logo -->
+            <a href="index.html" class="logo" id="header-logo" aria-label="AURA Home">
+                <span class="logo-icon" aria-hidden="true">A</span>
+                <span>AURA</span>
+            </a>
+
+            <!-- Center: Desktop Navigation -->
+            <nav class="nav-desktop" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li><a href="index.html" class="nav-link">Home</a></li>
+                    <li><a href="shop.html" class="nav-link">Shop</a></li>
+                    <li><a href="index.html#about" class="nav-link">About</a></li>
+                </ul>
+            </nav>
+
+            <!-- Right: Action Buttons -->
+            <div class="header-actions">
+                <!-- Search Button -->
+                <button onclick="openFilter()" class="action-btn" id="search-trigger" aria-label="Open Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+                
+                <!-- Wishlist Button -->
+                <a href="wishlist.html" class="action-btn" id="wishlist-trigger" aria-label="View Wishlist">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span class="badge" id="wishlist-badge">0</span>
+                </a>
+
+                <!-- Shopping Cart Button -->
+                <a href="cart.html" class="action-btn" id="cart-trigger" aria-label="View Shopping Cart">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span class="badge" id="cart-badge">0</span>
+                </a>
+
+            </div>
+
+            <!-- Mobile Hamburger Menu Button -->
+            <label for="mobile-menu-toggle-chk" class="hamburger-btn" id="mobile-menu-trigger" aria-label="Open Navigation Menu" aria-controls="mobile-nav-overlay">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
+                </svg>
+            </label>
+        </div>
+    </header>
+
+    <!-- ==========================================================================
+       MOBILE NAVIGATION MENU (SLIDE OUT DRAWER)
+       ========================================================================== -->
+    <div class="mobile-nav-overlay" id="mobile-nav-overlay" role="dialog" aria-modal="true" aria-label="Mobile Navigation Menu">
+        <div class="mobile-nav-drawer">
+            <div class="mobile-nav-header">
+                <a href="index.html" class="logo">
+                    <span class="logo-icon">A</span>
+                    <span>AURA</span>
+                </a>
+                <label for="mobile-menu-toggle-chk" class="close-btn" id="mobile-menu-close" aria-label="Close Navigation Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                        <line x1="18" y1="6" x2="6" y2="18"></line>
+                        <line x1="6" y1="6" x2="18" y2="18"></line>
+                    </svg>
+                </label>
+            </div>
+            
+            <nav class="mobile-nav" aria-label="Mobile Navigation List">
+                <ul class="mobile-nav-list">
+                    <li><a href="index.html" class="mobile-nav-link" id="mobile-nav-home">Home</a></li>
+                    <li><a href="shop.html" class="mobile-nav-link" id="mobile-nav-shop">Shop</a></li>
+                    <li><a href="index.html#about" class="mobile-nav-link" id="mobile-nav-about">About</a></li>
+                </ul>
+            </nav>
+
+            <div class="mobile-nav-actions">
+                <a onclick="openFilter(); event.preventDefault();" href="" class="mobile-action-link" id="mobile-search-trigger">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                    <span>Search Products</span>
+                </a>
+                <a href="wishlist.html" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                    </svg>
+                    <span>Wishlist</span>
+                    <span class="badge">0</span>
+                </a>
+                <a href="cart.html" class="mobile-action-link">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="9" cy="21" r="1"></circle>
+                        <circle cx="20" cy="21" r="1"></circle>
+                        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                    </svg>
+                    <span>Shopping Cart</span>
+                    <span class="badge">0</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
+       MAIN CONTENT
+       ========================================================================== -->
+    <main class="view-order-page" style="margin-bottom: 80px;">
+        <div class="container">
+            <!-- Breadcrumbs -->
+            <nav class="breadcrumb-nav" aria-label="Breadcrumb">
+                <ul class="breadcrumb-list">
+                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                    <li class="breadcrumb-separator">></li>
+                    <li class="breadcrumb-item active" aria-current="page">Order Details</li>
+                </ul>
+            </nav>
+
+            <!-- 1. Order Header Card -->
+            <!-- JavaScript Hook: Populate dynamic order header attributes -->
+            <section class="order-header-card">
+                <div class="order-header-info" style="flex: 1;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 12px;">
+                        <h1 id="order-id" style="margin-bottom: 0;">Order #AURA-498175</h1>
+                        <!-- Order Selector Dropdown for All Placed Orders -->
+                        <div id="order-history-selector-wrapper" style="display: none; align-items: center; gap: 8px;">
+                            <label for="order-history-select" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Order History:</label>
+                            <select id="order-history-select" onchange="switchOrder(this.value)" style="padding: 6px 12px; border-radius: 6px; border: 1px solid var(--border-color); font-family: var(--font-sans); font-size: 0.85rem; background: var(--bg-primary); color: var(--text-primary); cursor: pointer;">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="order-meta-grid">
+                        <div class="meta-block">
+                            <span class="meta-label">Date Placed</span>
+                            <span class="meta-value" id="order-date">July 20, 2026</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">Estimated Delivery</span>
+                            <span class="meta-value" id="delivery-date">July 24, 2026</span>
+                        </div>
+                        <div class="meta-block">
+                            <span class="meta-label">Shipping Method</span>
+                            <span class="meta-value">Courier Express Delivery</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="order-header-status">
+                    <span class="status-badge processing" id="order-status">Processing</span>
+                </div>
+            </section>
+
+
+            <!-- 3. Purchased Products Card List -->
+            <section class="products-list-container">
+                <h2 class="order-section-title">Purchased Items</h2>
+                <div class="products-list-card" id="products-container">
+                    <!-- JavaScript Hook: Render products dynamically -->
+                </div>
+            </section>
+
+            <!-- 4. Split Information Grid -->
+            <section class="order-info-split-grid">
+                <!-- Shipping details -->
+                <!-- JavaScript Hook: Populate dynamic shipping details info -->
+                <div class="info-card-panel" id="shipping-info">
+                    <div>
+                        <h2 class="panel-section-title">Shipping Address</h2>
+                        <div class="address-info-block">
+                            <p>
+                                <strong>John Doe</strong><br>
+                                120 Luxury Avenue, Suite 400<br>
+                                New York, NY 10001<br>
+                                United States
+                                <span class="contact-value">Phone: +1 (555) 0199</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="shipping-method-value">
+                        <span>Courier Express Delivery (Tracked)</span>
+                        <span id="tracking-number" style="font-weight: 600;">TRK-78945201-US</span>
+                    </div>
+                </div>
+
+                <!-- Payment methods info -->
+                <!-- JavaScript Hook: Populate dynamic payment details info -->
+                <div class="info-card-panel" id="payment-info">
+                    <div>
+                        <h2 class="panel-section-title">Payment Method</h2>
+                        <div class="payment-summary-block">
+                            <div class="payment-brand-row">
+                                <span class="payment-brand-label">Visa</span>
+                                <span>Visa ending in 4242</span>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span>Transaction ID</span>
+                                <strong>Auth_879203</strong>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span>Payment Date</span>
+                                <strong>July 20, 2026 | 10:14 AM</strong>
+                            </div>
+                            <div class="payment-detail-row">
+                                <span>Payment Status</span>
+                                <strong style="color: var(--success);">Authorized & Paid</strong>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Order Totals summary details -->
+                <!-- JavaScript Hook: Populate dynamic order summary values -->
+                <div class="info-card-panel" id="order-summary">
+                    <div>
+                        <h2 class="panel-section-title">Order Summary</h2>
+                        <div class="summary-values-list">
+                            <div class="summary-row">
+                                <span>Subtotal</span>
+                                <span id="subtotal">$299.99</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Shipping & Handling</span>
+                                <span id="shipping">$0.00 (Free Shipping)</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Estimated VAT (5%)</span>
+                                <span id="tax">$15.00</span>
+                            </div>
+                            <div class="summary-row discount-row">
+                                <span>Discount (Coupon Code: AURA10)</span>
+                                <span id="discount">-$30.00</span>
+                            </div>
+                            <div class="summary-row grand-total-row">
+                                <span>Grand Total</span>
+                                <span id="grand-total">$284.99</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- ==========================================================================
+       6. NEWSLETTER
+       ========================================================================== -->
+    <section class="newsletter" id="newsletter">
+        <div class="container">
+            <h2 class="newsletter-heading">Join the Club</h2>
+            <p class="newsletter-text">Subscribe to receive newsletters, event invitations, and curated lifestyle recommendations.</p>
+            <form class="newsletter-form" id="newsletter-form" action="javascript:void(0)" onsubmit="alert('Thank you for subscribing to AURA provisions newsletters!')">
+                <input type="email" class="newsletter-input" placeholder="Your email address" aria-label="Email address for newsletter" required>
+                <button type="submit" class="newsletter-btn btn btn-primary">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- ==========================================================================
+       7. FOOTER
+       ========================================================================== -->
+    <footer class="footer">
+        <div class="container footer-grid">
+            <!-- Col 1: Store Intro -->
+            <div class="footer-col" id="footer-store-intro">
+                <a href="index.html" class="logo footer-logo">
+                    <span class="logo-icon">A</span>
+                    <span>AURA</span>
+                </a>
+                <p class="footer-desc">
+                    A luxury curated lifestyle department store, showcasing fine French apothecary, designer perfumes, artisan furniture, and gourmet provisions.
+                </p>
+                <!-- Social media icons -->
+                <div class="social-links">
+                    <a href="https://instagram.com" class="social-link" aria-label="AURA Instagram" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com" class="social-link" aria-label="AURA Facebook" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://pinterest.com" class="social-link" aria-label="AURA Pinterest" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8 22a9 9 0 0 1-1.91-1.39c-1.54-1.5-2.22-3.8-1.57-6.07A10 10 0 0 1 12.62 3.1a9.53 9.53 0 0 1 8.27 4.19 9.38 9.38 0 0 1 .49 9.88A9.87 9.87 0 0 1 13 21.8c-.89-.04-1.63-.58-1.89-1.42l-.46-1.78a23.12 23.12 0 0 1-.84-3.32c-.06-.29.1-.53.37-.53a3 3 0 0 0 2.27-1.1 5.37 5.37 0 0 0 .5-5.59A5.27 5.27 0 0 0 7.73 6.9a5.36 5.36 0 0 0-2.4 4.54 3.73 3.73 0 0 0 1.25 2.87c.2.18.25.4.15.65a12.87 12.87 0 0 1-.77 1.86c-.11.23-.33.27-.54.12A6.67 6.67 0 0 1 3.2 11.5a8.21 8.21 0 0 1 5.56-8c3.27-.92 6.84.49 8.23 3.49A8.17 8.17 0 0 1 15 16.79a6 6 0 0 1-5.18.59"></path>
+                        </svg>
+                    </a>
+                    <a href="https://twitter.com" class="social-link" aria-label="AURA Twitter" target="_blank" rel="noopener">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Col 2: Quick Links -->
+            <div class="footer-col" id="footer-quick-links">
+                <h4 class="footer-title">Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="index.html" class="footer-link">Home</a></li>
+                    <li><a href="shop.html" class="footer-link">Shop</a></li>
+                    <li><a href="wishlist.html" class="footer-link">Wishlist</a></li>
+                    <li><a href="cart.html" class="footer-link">Cart</a></li>
+                </ul>
+            </div>
+            
+            <!-- Col 3: Customer Service -->
+            <div class="footer-col" id="footer-customer-service">
+                <h4 class="footer-title">Customer Service</h4>
+                <ul class="footer-links">
+                    <li><a href="#faq" class="footer-link">FAQs</a></li>
+                    <li><a href="#shipping" class="footer-link">Shipping & Returns</a></li>
+                    <li><a href="view-order.html" class="footer-link">Order Tracking</a></li>
+                    <li><a href="#contact" class="footer-link">Contact Us</a></li>
+                </ul>
+            </div>
+            
+            <!-- Col 4: Contact Info -->
+            <div class="footer-col" id="contact-info-col">
+                <h4 class="footer-title">Contact Information</h4>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                            <circle cx="12" cy="10" r="3"></circle>
+                        </svg>
+                        <span>120 Luxury Avenue, Suite 400, New York, NY 10001</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                        </svg>
+                        <span>+1 (800) 555-0199</span>
+                    </div>
+                    <div class="contact-item">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
+                        </svg>
+                        <span>concierge@aurastore.com</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <div class="container flex-footer-bottom">
+                <p>&copy; 2026 AURA Store. All rights reserved.</p>
+                <div class="footer-legal-links">
+                    <a href="#privacy" class="footer-legal-link">Privacy Policy</a>
+                    <a href="#terms" class="footer-legal-link">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ==========================================================================
+       BACK-TO-TOP BUTTON
+       ========================================================================== -->
+    <a href="#" class="back-to-top" id="back-to-top" aria-label="Scroll back to top">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+        </svg>
+    </a>
+
+    <!-- ==========================================================================
+       SEARCH OVERLAY
+       ========================================================================== -->
+    <div class="search-overlay" id="search-overlay" role="dialog" aria-modal="true" aria-label="Search Products">
+        <button onclick="closeSearch()" class="search-close-btn" id="search-close" aria-label="Close Search Overlay">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" width="24" height="24">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+        </button>
+        <div class="search-container">
+            <h2 class="search-header-text">What are you looking for?</h2>
+            <form class="search-form" id="search-overlay-form" action="#shop">
+                <input oninput="search()" type="search" class="search-input-field" id="search-query" placeholder="Search by product, category, style..." aria-label="Search site content" autofocus>
+                <button onclick="submitSearch()" type="submit" class="search-submit-btn" aria-label="Submit Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+            <div class="search-results-box" id="search-results-box"></div>
+        </div>
+    </div>
+
+    <!-- Main JavaScript Link -->
+    <script src="js/main.js"></script>
+    <script src="js/view-order.js"></script>
+</body>
+</html>
