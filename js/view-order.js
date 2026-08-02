@@ -17,15 +17,15 @@ function switchOrder(orderId) {
 
 function renderOrderHistorySelector() {
     let selectorWrapper = document.getElementById("order-history-selector-wrapper");
-    let selectEl = document.getElementById("order-history-select");
-    if (!selectorWrapper || !selectEl) return;
+    let select = document.getElementById("order-history-select");
+    if (!selectorWrapper || !select) return;
 
     if (orders && orders.length > 0) {
         selectorWrapper.style.display = "flex";
-        selectEl.innerHTML = "";
+        select.innerHTML = "";
         orders.forEach(order => {
             let isSelected = (orderDetails && (order.id === orderDetails.id || order.orderNumber === orderDetails.orderNumber)) ? "selected" : "";
-            selectEl.innerHTML += `<option value="${order.id}" ${isSelected}>${order.orderNumber || '#' + order.id} - ${order.orderDate}</option>`;
+            select.innerHTML += `<option value="${order.id}" ${isSelected}>${order.orderNumber || '#' + order.id} - ${order.orderDate}</option>`;
         });
     } else {
         selectorWrapper.style.display = "none";
@@ -57,23 +57,23 @@ function displayOrderDetails() {
     renderOrderHistorySelector();
 
     // 2. Populate Order Header Card
-    let orderIdEl = document.getElementById("order-id");
-    let orderDateEl = document.getElementById("order-date");
-    let deliveryDateEl = document.getElementById("delivery-date");
-    let orderStatusEl = document.getElementById("order-status");
+    let orderId = document.getElementById("order-id");
+    let orderDate = document.getElementById("order-date");
+    let deliveryDate = document.getElementById("delivery-date");
+    let orderStatus = document.getElementById("order-status");
 
-    if (orderIdEl) {
-        orderIdEl.innerText = `Order ${orderDetails.orderNumber || '#' + orderDetails.id}`;
+    if (orderId) {
+        orderId.innerText = `Order ${orderDetails.orderNumber || '#' + orderDetails.id}`;
     }
-    if (orderDateEl) {
-        orderDateEl.innerText = orderDetails.orderDate || "N/A";
+    if (orderDate) {
+        orderDate.innerText = orderDetails.orderDate || "N/A";
     }
-    if (deliveryDateEl) {
-        deliveryDateEl.innerText = orderDetails.deliveryDate || "N/A";
+    if (deliveryDate) {
+        deliveryDate.innerText = orderDetails.deliveryDate || "N/A";
     }
-    if (orderStatusEl) {
-        orderStatusEl.innerText = orderDetails.status || "Processing";
-        orderStatusEl.className = `status-badge ${(orderDetails.status || 'processing').toLowerCase()}`;
+    if (orderStatus) {
+        orderStatus.innerText = orderDetails.status || "Processing";
+        orderStatus.className = `status-badge ${(orderDetails.status || 'processing').toLowerCase()}`;
     }
 
     // 3. Populate Purchased Products List using view-order design template
@@ -141,15 +141,15 @@ function displayOrderProducts(items) {
 }
 
 function displayShippingInfo(addressData, shippingMethod, trackingNumber) {
-    let shippingInfoEl = document.getElementById("shipping-info");
-    if (!shippingInfoEl) return;
+    let shippingInfo = document.getElementById("shipping-info");
+    if (!shippingInfo) return;
 
     let addressObj = addressData || {};
     let name = addressObj.name || "N/A";
     let address = addressObj.address || "N/A";
     let phone = addressObj.phone ? `Phone: ${addressObj.phone}` : "N/A";
 
-    shippingInfoEl.innerHTML = `
+    shippingInfo.innerHTML = `
         <div>
             <h2 class="panel-section-title">Shipping Address</h2>
             <div class="address-info-block">
@@ -173,7 +173,7 @@ function displayPaymentInfo(paymentData) {
 
     let pay = paymentData || {};
     let brand = pay.brand || "Visa";
-    let last4 = pay.last4 || "4242";
+    let last4 = pay.last4 || "****";
     let txnId = pay.transactionId || "N/A";
     let date = pay.paymentDate || "N/A";
     let status = pay.paymentStatus || "Authorized & Paid";
@@ -204,32 +204,32 @@ function displayPaymentInfo(paymentData) {
 }
 
 function displayOrderSummary(totalsData, items) {
-    let subtotalEl = document.getElementById("subtotal");
-    let shippingEl = document.getElementById("shipping");
-    let taxEl = document.getElementById("tax");
-    let discountEl = document.getElementById("discount");
-    let grandTotalEl = document.getElementById("grand-total");
+    let subtotal = document.getElementById("subtotal");
+    let shipping = document.getElementById("shipping");
+    let tax= document.getElementById("tax");
+    let discount= document.getElementById("discount");
+    let grandTotal= document.getElementById("grand-total");
 
     if (totalsData) {
-        if (subtotalEl) subtotalEl.innerText = `$${totalsData.subtotal}`;
-        if (shippingEl) shippingEl.innerText = totalsData.shippingText || "$0.00 (Free Shipping)";
-        if (taxEl) taxEl.innerText = `$${totalsData.tax}`;
-        if (discountEl) {
+        if (subtotal) subtotal.innerText = `$${totalsData.subtotal}`;
+        if (shipping) shipping.innerText = totalsData.shippingText || "$0.00 (Free Shipping)";
+        if (tax) tax.innerText = `$${totalsData.tax}`;
+        if (discount) {
             let discVal = parseFloat(totalsData.discount || 0);
             if (discVal > 0) {
-                discountEl.innerText = `-$${discVal.toFixed(2)}`;
-                let discountRow = discountEl.closest(".discount-row");
+                discount.innerText = `-$${discVal.toFixed(2)}`;
+                let discountRow = discount.closest(".discount-row");
                 if (discountRow) {
                     discountRow.style.display = "flex";
                 }
             } else {
-                let discountRow = discountEl.closest(".discount-row");
+                let discountRow = discount.closest(".discount-row");
                 if (discountRow) {
                     discountRow.style.display = "none";
                 }
             }
         }
-        if (grandTotalEl) grandTotalEl.innerText = `$${totalsData.grandTotal}`;
+        if (grandTotal) grandTotal.innerText = `$${totalsData.grandTotal}`;
     } else {
         let calculatedSubtotal = 0;
         (items || []).forEach(product => {
@@ -240,14 +240,14 @@ function displayOrderSummary(totalsData, items) {
         let taxVal = calculatedSubtotal * 0.05;
         let grandTotalVal = calculatedSubtotal + taxVal;
 
-        if (subtotalEl) subtotalEl.innerText = `$${calculatedSubtotal.toFixed(2)}`;
-        if (shippingEl) shippingEl.innerText = "$0.00 (Free Shipping)";
-        if (taxEl) taxEl.innerText = `$${taxVal.toFixed(2)}`;
-        if (discountEl) {
-            let discountRow = discountEl.closest(".discount-row");
+        if (subtotal) subtotal.innerText = `$${calculatedSubtotal.toFixed(2)}`;
+        if (shipping) shipping.innerText = "$0.00 (Free Shipping)";
+        if (tax) tax.innerText = `$${taxVal.toFixed(2)}`;
+        if (discount) {
+            let discountRow = discount.closest(".discount-row");
             if (discountRow) discountRow.style.display = "none";
         }
-        if (grandTotalEl) grandTotalEl.innerText = `$${calculatedSubtotal.toFixed(2)}`;
+        if (grandTotal) grandTotal.innerText = `$${calculatedSubtotal.toFixed(2)}`;
     }
 }
 

@@ -138,47 +138,48 @@ function calculateTotalPrice(){
     });
     finalPrice = totalProductPrice.toFixed(2);
     
-    let subtotalEl = document.getElementById("subtotal");
-    let discountEl = document.getElementById("discount");
-    let sumDividerEl = document.getElementById("sumDivider");
-    let grandTotalEl = document.getElementById("grand-total");
+    let subtotal = document.getElementById("subtotal");
+    let discount = document.getElementById("discount");
+    let sumDivider = document.getElementById("sumDivider");
+    let grandTotal = document.getElementById("grand-total");
     
-    if (subtotalEl) {
-        subtotalEl.innerHTML = `$${finalPrice}`;
+    if (subtotal) {
+        subtotal.innerHTML = `$${finalPrice}`;
     }
 
     let couponInput = document.getElementById("coupon-input");
     let couponVal = couponInput ? couponInput.value.trim().toUpperCase() : "";
     
+    let discountAmt = 0;
     if (couponVal === "AURA10" || couponVal === "ILOVEJS10" || couponVal === "DISCOUNT10") {
-        let discountAmt = totalProductPrice * 0.1;
+        discountAmt = totalProductPrice * 0.1;
         let finalGrandTotal = totalProductPrice - discountAmt;
         
-        if (discountEl) {
-            discountEl.innerHTML = `-$${discountAmt.toFixed(2)}`;
+        if (discount) {
+            discount.innerHTML = `-$${discountAmt.toFixed(2)}`;
         }
-        if (sumDividerEl) {
-            sumDividerEl.innerHTML = `Discount applied`;
+        if (sumDivider) {
+            sumDivider.innerHTML = `Discount applied`;
         }
-        if (grandTotalEl) {
-            grandTotalEl.innerHTML = `$${finalGrandTotal.toFixed(2)}`;
+        if (grandTotal) {
+            grandTotal.innerHTML = `$${finalGrandTotal.toFixed(2)}`;
         }
     } else {
-        if (discountEl) {
-            discountEl.innerHTML = "";
+        if (discount) {
+            discount.innerHTML = "";
         }
-        if (sumDividerEl) {
-            sumDividerEl.innerHTML = "";
+        if (sumDivider) {
+            sumDivider.innerHTML = "";
         }
-        if (grandTotalEl) {
-            grandTotalEl.innerHTML = `$${finalPrice}`;
+        if (grandTotal) {
+            grandTotal.innerHTML = `$${finalPrice}`;
         }
     }
 
     checkoutDetails = {
         subtotal: finalPrice,
-        discount: discount
-    }
+        discount: discountAmt.toFixed(2)
+    };
     checkoutData.push(checkoutDetails);
     localStorage.setItem("checkoutData", JSON.stringify(checkoutData));
 }
