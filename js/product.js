@@ -98,6 +98,19 @@ function renderProducts() {
   // Update which page number link looks active
   updatePaginationUI();
 }
+function updateBadges() {
+    // Update all Cart badges (desktop & mobile)
+    const cartBadges = document.querySelectorAll("#cart-badge, #header-cart-count, a[href='cart.html'] .badge, a[href='cart.html'] .badge-count");
+    cartBadges.forEach(badge => {
+        badge.innerText = cart.length;
+    });
+
+    // Update all Wishlist badges (desktop & mobile)
+    const wishlistBadges = document.querySelectorAll("#wishlist-badge, #wishlist-trigger .badge, a[href='wishlist.html'] .badge, a[href='wishlist.html'] .badge-count");
+    wishlistBadges.forEach(badge => {
+        badge.innerText = wishlist.length;
+    });
+}
 
 // Function to update active state in pagination numbers
 function updatePaginationUI() {
@@ -170,6 +183,7 @@ function addToCart(productId) {
     cart.push(cartProduct);
     localStorage.setItem("cart", JSON.stringify(cart));
     alert("Product added to cart!");
+    updateBadges()
 }
 
 function addToWishlist(productId) {
